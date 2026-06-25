@@ -1,0 +1,7 @@
+streamlit
+pandas
+altair
+requests
+finance-datareader
+pykrx
+yfinance
