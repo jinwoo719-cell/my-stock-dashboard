@@ -415,6 +415,10 @@ def get_fx(pair, days=180):
         end = datetime.date.today()
         start = end - datetime.timedelta(days=days)
         df = fdr.DataReader(pair, start, end)
+        # 일부 교차환율(JPY/KRW, EUR/KRW 등)은 야후 파이낸스 응답에서
+        # 최근 영업일 종가가 결측치(NaN)로 내려오는 경우가 있어,
+        # 전일대비(%) 계산 시 "+nan%"이 표시되는 원인이 됨 → 결측 행 제거
+        df = df.dropna(subset=["Close"])
         return df, None
     except Exception as e:
         return None, f"{pair} 호출 오류: {e}"
