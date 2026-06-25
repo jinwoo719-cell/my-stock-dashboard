@@ -5,3 +5,4 @@ requests
 finance-datareader
 pykrx
 yfinance
+setuptools
